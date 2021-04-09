@@ -1,0 +1,29 @@
+language: node_js
+node_js:
+  - lts/*
+
+os:
+  - linux
+dist: focal
+
+branches:
+  only:
+    - master
+
+cache:
+  directories:
+    - 'node_modules'
+
+install:
+  - npm install
+  - npm run build
+
+script:
+  - npm run test
+
+deploy:
+  provider: heroku
+  app: secretfrontend
+  skip-cleanup: true
+  api_key: $HEROKU_API_KEY
+  
